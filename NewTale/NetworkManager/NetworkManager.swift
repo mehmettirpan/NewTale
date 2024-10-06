@@ -9,7 +9,6 @@ import Foundation
 import GoogleGenerativeAI
 
 enum APIKey {
-    // Fetch the API key from `GenerativeAI-Info.plist`
     static var `default`: String {
         guard let filePath = Bundle.main.path(forResource: "GenerativeAI-Info", ofType: "plist")
         else {
@@ -32,16 +31,15 @@ class NetworkManager {
     let generativeModel: GenerativeModel
 
     private init() {
-        // Gemini model is being used here
         generativeModel = GenerativeModel(
             name: "gemini-1.5-flash",
             apiKey: APIKey.default
         )
     }
 
-    // Function to fetch the story based on user input
+    // Function to fetch the story based on user input and language
     func fetchStory(input: StoryInput, completion: @escaping (Result<String, Error>) -> Void) {
-        let prompt = "Write a story for a \(input.age)-year-old child who likes \(input.interest). The purpose of the story is \(input.purpose)."
+        let prompt = createPrompt(input: input)
 
         Task {
             do {
@@ -54,6 +52,22 @@ class NetworkManager {
             } catch {
                 completion(.failure(error))
             }
+        }
+    }
+
+    // Function to create the prompt based on the language
+    private func createPrompt(input: StoryInput) -> String {
+        switch input.language {
+        case "tr":
+            return "Bir \(input.age) yaşındaki \(input.interest) ile ilgilenen çocuğa yönelik bir hikaye yaz. Hikayenin amacı \(input.purpose)."
+        case "de":
+            return "Schreibe eine Geschichte für ein \(input.age)-jähriges Kind, das sich für \(input.interest) interessiert. Der Zweck der Geschichte ist \(input.purpose)."
+        case "fr":
+            return "Écris une histoire pour un enfant de \(input.age) ans qui aime \(input.interest). Le but de l'histoire est \(input.purpose)."
+        case "ru":
+            return "Напишите рассказ для ребенка \(input.age) лет, который интересуется \(input.interest). Цель рассказа — \(input.purpose)."
+        default:
+            return "Write a story for a \(input.age)-year-old child who likes \(input.interest). The purpose of the story is \(input.purpose)."
         }
     }
 }

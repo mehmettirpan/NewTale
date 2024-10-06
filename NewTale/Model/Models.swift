@@ -12,6 +12,7 @@ struct StoryInput {
     let age: Int
     let interest: String
     let purpose: String
+    let language: String // "en", "tr", "de", "fr", "ru", etc.
 }
 
 struct Story {

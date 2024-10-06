@@ -9,44 +9,28 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    let ageTextField = UITextField()
-    let interestTextField = UITextField()
-    let purposeTextField = UITextField()
-    let generateStoryButton = UIButton()
+//    let ageTextField = UITextField()
+//    let interestTextField = UITextField()
+//    let purposeTextField = UITextField()
+//    let generateStoryButton = UIButton()
 
     let storyViewModel = StoryViewModel()
-
+    
+    let ageTextField = createTextField(placeholder:"AGE_PLACEHOLDER")
+    let interestTextField = createTextField(placeholder: NSLocalizedString("INTEREST_PLACEHOLDER", comment: "Interest placeholder"))
+    let purposeTextField = createTextField(placeholder: NSLocalizedString("GENERATE_PLACEHOLDER", comment: "Generate placeholder"))
+    let generateStoryButton = createButton(title: NSLocalizedString("SUBMİT", comment: "Submit"), target:self , action:#selector(generateStoryButtonTapped))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-    }
-
-    func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
+        // Add to the view and setup layout (for example using Auto Layout)
         
-        // Age TextField setup
-        ageTextField.placeholder = "Enter child's age"
-        ageTextField.borderStyle = .roundedRect
-        ageTextField.keyboardType = .numberPad
         view.addSubview(ageTextField)
-
-        // Interest TextField setup
-        interestTextField.placeholder = "Enter child's interest"
-        interestTextField.borderStyle = .roundedRect
         view.addSubview(interestTextField)
-
-        // Purpose TextField setup
-        purposeTextField.placeholder = "Enter story purpose"
-        purposeTextField.borderStyle = .roundedRect
         view.addSubview(purposeTextField)
-
-        // Generate Story Button setup
-        generateStoryButton.setTitle("Generate Story", for: .normal)
-        generateStoryButton.backgroundColor = .systemBlue
-        generateStoryButton.layer.cornerRadius = 10
-        generateStoryButton.addTarget(self, action: #selector(generateStoryButtonTapped), for: .touchUpInside)
         view.addSubview(generateStoryButton)
-
+        
         setupConstraints()
     }
 
@@ -87,7 +71,7 @@ class MainViewController: UIViewController {
             return
         }
 
-        let storyInput = StoryInput(age: age, interest: interest, purpose: purpose)
+        let storyInput = StoryInput(age: age, interest: interest, purpose: purpose, language: storyViewModel.getDeviceLanguage())
 
         // Start API call
         storyViewModel.generateStory(input: storyInput) { [weak self] storyContent in

@@ -22,4 +22,10 @@ class StoryViewModel {
             }
         }
     }
+    
+    // This function will return the device's preferred language
+    func getDeviceLanguage() -> String {
+        let languageCode = Locale.preferredLanguages.first?.prefix(2) ?? "en" // Default to English if language code is unavailable
+        return String(languageCode)
+    }
 }

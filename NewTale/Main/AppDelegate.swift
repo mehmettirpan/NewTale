@@ -10,12 +10,25 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
-    }
+       
+       // Create a new UIWindow instance and make it key and visible
+       window = UIWindow(frame: UIScreen.main.bounds)
+       
+       // Create an instance of your initial view controller (e.g., ViewController)
+       let rootViewController = MainViewController() // Your root view controller
+       
+       // Set the root view controller of the window
+       window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+       
+       // Make the window visible
+       window?.makeKeyAndVisible()
+       
+       return true
+   }
+
 
     // MARK: UISceneSession Lifecycle
 
