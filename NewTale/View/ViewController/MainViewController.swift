@@ -9,17 +9,12 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-//    let ageTextField = UITextField()
-//    let interestTextField = UITextField()
-//    let purposeTextField = UITextField()
-//    let generateStoryButton = UIButton()
-
     let storyViewModel = StoryViewModel()
     
-    let ageTextField = createTextField(placeholder:"AGE_PLACEHOLDER")
+    let ageTextField = createTextField(placeholder:NSLocalizedString("AGE_PLACEHOLDER", comment: "Age placeholder"))
     let interestTextField = createTextField(placeholder: NSLocalizedString("INTEREST_PLACEHOLDER", comment: "Interest placeholder"))
     let purposeTextField = createTextField(placeholder: NSLocalizedString("GENERATE_PLACEHOLDER", comment: "Generate placeholder"))
-    let generateStoryButton = createButton(title: NSLocalizedString("SUBMİT", comment: "Submit"), target:self , action:#selector(generateStoryButtonTapped))
+    let generateStoryButton = createButton(title: NSLocalizedString("SUBMIT", comment: "Submit"), target:self , action:#selector(generateStoryButtonTapped))
     
     override func viewDidLoad() {
         super.viewDidLoad()

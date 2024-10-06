@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  NewTale
+
+  Created by Mehmet Tırpan on 6.10.2024.
+  
+*/
+
+"AGE_PLACEHOLDER" = "Alter des Kindes";
+"INTEREST_PLACEHOLDER" = "Interessengebiete";
+"GENERATE_PLACEHOLDER" = "Die beabsichtigte Nachricht";
+"SUBMIT" = "Erstellen";
