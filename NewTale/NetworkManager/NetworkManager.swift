@@ -59,7 +59,7 @@ class NetworkManager {
     private func createPrompt(input: StoryInput) -> String {
         switch input.language {
         case "tr":
-            return "Bir \(input.age) yaşındaki \(input.interest) ile ilgilenen çocuğa yönelik bir hikaye yaz. Hikayenin amacı \(input.purpose)."
+            return "\(input.age) yaşındaki \(input.interest) ile ilgilenen çocuğa yönelik bir masal ve bu masala uygun bir başlık yaz. Masalın vermek istediği mesaj: \(input.purpose)."
         case "de":
             return "Schreibe eine Geschichte für ein \(input.age)-jähriges Kind, das sich für \(input.interest) interessiert. Der Zweck der Geschichte ist \(input.purpose)."
         case "fr":

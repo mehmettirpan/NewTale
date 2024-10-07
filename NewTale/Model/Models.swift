@@ -15,6 +15,6 @@ struct StoryInput {
     let language: String // "en", "tr", "de", "fr", "ru", etc.
 }
 
-struct Story {
-    var content: String
-}
+//struct Story {
+//    var content: String
+//}
