@@ -94,7 +94,7 @@ class StorySectionCell: UITableViewCell, UICollectionViewDataSource, UICollectio
             subview.removeFromSuperview()
         }
 
-        cell.backgroundColor = .lightGray
+        cell.backgroundColor = UIColor(named: "CellBackground")
         cell.layer.cornerRadius = 8
         
         // Yeni UILabel ekleme
@@ -106,6 +106,7 @@ class StorySectionCell: UITableViewCell, UICollectionViewDataSource, UICollectio
         label.minimumScaleFactor = 0.5
         label.numberOfLines = 3
         label.font = UIFont.systemFont(ofSize: 16) // Burada font boyutunu düzenledik
+        label.textColor = UIColor(named: "TextColor")
 
         cell.contentView.addSubview(label)
         NSLayoutConstraint.activate([

@@ -13,7 +13,8 @@ class StoryViewController: UIViewController {
     let storyTextView = UITextView()
     var storyContent: String?
     var isFromSavedBooks: Bool = false // Flag
-    
+    var predefinedStory: PredefinedStory? // Predefined hikaye
+
     let speechSynthesizer = AVSpeechSynthesizer()
     
     // Seslendirme butonları
@@ -86,6 +87,19 @@ class StoryViewController: UIViewController {
             // Büyük başlık ayarları
             navigationItem.title = title  // Set the extracted title to the navigation bar
         }
+        
+        // Eğer predefined bir hikaye varsa başlığı oradan alalım
+        if let predefined = predefinedStory {
+            navigationItem.title = predefined.title  // Predefined title değerini ayarla
+            let fullStory = predefined.story.joined(separator: "\n")
+            let (formattedText, _) = formatStoryContent(fullStory) // Title zaten predefined'den alındığı için ikinci parametreyi kullanmaya gerek yok
+            storyTextView.attributedText = formattedText
+        } else if let story = storyContent {
+            let (formattedText, title) = formatStoryContent(story)
+            storyTextView.attributedText = formattedText
+            // Eğer predefined değilse, hikaye başlığını normal metinden ayarlayalım
+            navigationItem.title = title
+        }
     }
 
     func formatStoryContent(_ story: String) -> (NSAttributedString, String?) {
@@ -115,13 +129,14 @@ class StoryViewController: UIViewController {
         // Apply general text formatting (smaller font size)
         let fullRange = NSRange(location: 0, length: attributedText.length)
         attributedText.addAttribute(.font, value: UIFont.systemFont(ofSize: 18), range: fullRange)
-        
+        attributedText.addAttribute(.foregroundColor, value: UIColor(named: "TextColor"), range: fullRange)
+
         // Return the formatted text and the title
         return (attributedText, title)
     }
     
     func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
         // Eğer bu ekrana kaydedilmiş hikayelerden gelinmişse, kaydet butonu gösterilmemeli
         if !isFromSavedBooks {

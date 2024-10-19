@@ -119,7 +119,8 @@ class PredefinedBooksViewController: UIViewController, UITableViewDataSource, UI
 
         // Pass the selected story content
         storyViewController.storyContent = selectedStory.story.joined(separator: "\n")  // Combine story array into a single string
-
+        storyViewController.predefinedStory = selectedStory // Predefined story'yi geçir
+        
         // Disable save button for predefined stories
         storyViewController.isFromSavedBooks = true
         

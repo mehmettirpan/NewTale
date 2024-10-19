@@ -36,7 +36,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Fetch my stories and predefined stories
         storyViewModel.fetchMyStories()
         storyViewModel.loadJSONForLanguage(language: "English") // Default to English for this example
-        
     }
     
     // MARK: - Navigation Bar Setup
@@ -143,17 +142,20 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             // Handle predefined stories
             if let selectedStory = storyViewModel.predefinedStories.first(where: { $0.title == title }) {
                 let storyVC = StoryViewController()
-                
+
                 // Combine the `story` array into a single string and pass it
                 let storyContent = selectedStory.story.joined(separator: " ")
                 storyVC.storyContent = storyContent
+                
+                // Pass the full PredefinedStory object
+                storyVC.predefinedStory = selectedStory // Pass predefined story here
                 
                 // If there's a moral, append it to the story content
                 if let moral = selectedStory.moral {
                     storyVC.storyContent! += "\n\nMoral: \(moral)"
                 }
-                
-                storyVC.isFromSavedBooks = false // Since it's a predefined story
+
+                storyVC.isFromSavedBooks = true // Since it's a predefined story
                 navigationController?.pushViewController(storyVC, animated: true)
             } else {
                 print("Predefined story not found")
