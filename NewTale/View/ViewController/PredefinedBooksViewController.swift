@@ -11,11 +11,17 @@ class PredefinedBooksViewController: UIViewController, UITableViewDataSource, UI
     
     let tableView = UITableView()
     var stories: [PredefinedStory] = []
+    let viewModel = StoryViewModel()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        navigationItem.title = "Predefined Stories"
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -36,13 +42,15 @@ class PredefinedBooksViewController: UIViewController, UITableViewDataSource, UI
         ])
     }
     
+    // MARK: - Show Language Selection Popup
     func showLanguageSelectionPopUp() {
         let alertController = UIAlertController(title: "Select Language", message: "Which language would you like to read books in?", preferredStyle: .alert)
         
         let languages = ["Turkish", "English", "German", "French", "Russian"]
         for language in languages {
-            alertController.addAction(UIAlertAction(title: language, style: .default, handler: { _ in
-                self.loadJSONForLanguage(language: language)
+            alertController.addAction(UIAlertAction(title: language, style: .default, handler: { [weak self] _ in
+                // Tell the ViewModel to load the JSON for the selected language
+                self?.loadJSONForLanguage(language: language)
             }))
         }
         
@@ -72,12 +80,12 @@ class PredefinedBooksViewController: UIViewController, UITableViewDataSource, UI
                 
                 // Debug: Print the contents of the JSON file
                 let jsonString = String(data: data, encoding: .utf8)
-                print("JSON File Contents: \(String(describing: jsonString))")
+//                print("JSON File Contents: \(String(describing: jsonString))")
                 
                 let decodedResponse = try JSONDecoder().decode(PredefinedStoryResponse.self, from: data)
                 
                 // Debug: Print the decoded stories
-                print("Decoded Stories: \(decodedResponse.stories)")
+//                print("Decoded Stories: \(decodedResponse.stories)")
                 
                 stories = decodedResponse.stories
                 tableView.reloadData()  // Reload tableView after parsing JSON
@@ -98,6 +106,7 @@ class PredefinedBooksViewController: UIViewController, UITableViewDataSource, UI
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.textLabel?.text = stories[indexPath.row].title
         cell.detailTextLabel?.text = stories[indexPath.row].moral ?? "" // Optional if the moral exists
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -119,14 +128,4 @@ class PredefinedBooksViewController: UIViewController, UITableViewDataSource, UI
     }
 }
 
-// Struct for decoding the JSON response
-struct PredefinedStoryResponse: Decodable {
-    let stories: [PredefinedStory]
-}
 
-struct PredefinedStory: Decodable {
-    let number: String
-    let title: String
-    let story: [String]
-    let moral: String?
-}

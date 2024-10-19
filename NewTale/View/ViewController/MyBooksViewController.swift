@@ -12,17 +12,40 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     let tableView = UITableView()
     var stories: [Story] = []
-
+    let viewModel: StoryViewModel
+    
+    // Initializer: ViewModel dışarıdan veriliyor
+    init(viewModel: StoryViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        navigationItem.title = "My Stories"
+
+        view.addSubview(tableView)
+        setupConstraints()
+
+        // ViewModel'den gelen hikayeler güncellendiğinde tabloyu yeniden yükle
+        viewModel.onStoriesUpdated = { [weak self] in
+            self?.stories = self?.viewModel.myStories ?? []
+            self?.tableView.reloadData()
+        }
+        
+        viewModel.fetchMyStories() // Hikayeleri yükle
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        view.addSubview(tableView)
-        setupConstraints()
-        fetchStories()
     }
 
     func setupConstraints() {
@@ -36,17 +59,7 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
         ])
     }
 
-    func fetchStories() {
-        let request: NSFetchRequest<Story> = Story.fetchRequest()
 
-        do {
-            let fetchedStories = try CoreDataStack.shared.context.fetch(request)
-            stories = fetchedStories
-            tableView.reloadData()
-        } catch {
-            print("Hikayeler yüklenemedi: \(error)")
-        }
-    }
 
     // UITableViewDataSource Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -55,7 +68,16 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = stories[indexPath.row].content
+        let story = stories[indexPath.row].content ?? ""
+        
+        // Başlık çıkarma işlemi: "##" ile başlayan satırı bul ve sadece başlığı göster
+        if let title = extractTitle(from: story) {
+            cell.textLabel?.text = title
+        } else {
+            cell.textLabel?.text = "Başlık bulunamadı" // Eğer başlık ayıklanamazsa
+        }
+        
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -67,5 +89,19 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
         storyVC.isFromSavedBooks = true // Burada flag'ı ayarlıyoruz
         
         navigationController?.pushViewController(storyVC, animated: true)
+    }
+    
+    // Başlığı "##" sembolüyle başlayan satırdan ayıkla
+    func extractTitle(from story: String) -> String? {
+        let lines = story.split(separator: "\n")
+        
+        // İlk "##" ile başlayan satırı bul ve "##" işaretlerini kaldır
+        for line in lines {
+            if line.hasPrefix("##") {
+                return line.replacingOccurrences(of: "##", with: "").trimmingCharacters(in: .whitespaces)
+            }
+        }
+        
+        return nil // Eğer "##" ile başlayan satır yoksa, nil döndür
     }
 }
