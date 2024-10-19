@@ -93,6 +93,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self?.readMyBooks()
             }
             
+            // Seçilen hikayeye göre okuma ekranına yönlendirme
+            cell.itemSelectedAction = { [weak self] selectedStoryTitle in
+                self?.openStoryReadingScreen(with: selectedStoryTitle, isPredefined: false)
+            }
+            
         } else {
             // "Hazır Kitaplar" section
             let predefinedTitles = storyViewModel.predefinedStories.map { $0.title }
@@ -101,6 +106,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             // Tümünü Göster butonuna basıldığında readPredefinedBooks çağır
             cell.showAllButtonAction = { [weak self] _ in
                 self?.readPredefinedBooks()
+            }
+            
+            // Seçilen hazır kitabı okuma ekranına yönlendirme
+            cell.itemSelectedAction = { [weak self] selectedStoryTitle in
+                self?.openStoryReadingScreen(with: selectedStoryTitle, isPredefined: true)
             }
         }
         cell.selectionStyle = .none
@@ -125,5 +135,39 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func readMyBooks() {
         let myBooksVC = MyBooksViewController(viewModel: storyViewModel) // Burada viewModel geçiliyor
         navigationController?.pushViewController(myBooksVC, animated: true)
+    }
+    
+//    MARK: - Functions
+    func openStoryReadingScreen(with title: String, isPredefined: Bool) {
+        if isPredefined {
+            // Handle predefined stories
+            if let selectedStory = storyViewModel.predefinedStories.first(where: { $0.title == title }) {
+                let storyVC = StoryViewController()
+                
+                // Combine the `story` array into a single string and pass it
+                let storyContent = selectedStory.story.joined(separator: " ")
+                storyVC.storyContent = storyContent
+                
+                // If there's a moral, append it to the story content
+                if let moral = selectedStory.moral {
+                    storyVC.storyContent! += "\n\nMoral: \(moral)"
+                }
+                
+                storyVC.isFromSavedBooks = false // Since it's a predefined story
+                navigationController?.pushViewController(storyVC, animated: true)
+            } else {
+                print("Predefined story not found")
+            }
+        } else {
+            // Handle user-created stories
+            if let selectedStory = storyViewModel.myStories.first(where: { $0.title == title }) {
+                let storyVC = StoryViewController()
+                storyVC.storyContent = selectedStory.content // Pass user-created story content
+                storyVC.isFromSavedBooks = true // Since it's a user-created story
+                navigationController?.pushViewController(storyVC, animated: true)
+            } else {
+                print("User story not found")
+            }
+        }
     }
 }

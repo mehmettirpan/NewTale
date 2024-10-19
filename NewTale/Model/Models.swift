@@ -16,10 +16,6 @@ struct StoryInput {
     let language: String // "en", "tr", "de", "fr", "ru", etc.
 }
 
-//struct Story {
-//    var content: String
-//}
-
 // Struct for decoding the JSON response
 struct PredefinedStoryResponse: Decodable {
     let stories: [PredefinedStory]
