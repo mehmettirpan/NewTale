@@ -35,14 +35,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // Fetch my stories and predefined stories
         storyViewModel.fetchMyStories()
-        storyViewModel.loadJSONForLanguage(language: "English") // Default to English for this example
+        storyViewModel.loadJSONForLanguage(language: NSLocalizedString("Default Language", comment: "Default Language")) // Default to English for this example
     }
     
     // MARK: - Navigation Bar Setup
     func setupNavigationBar() {
-        navigationItem.title = "NEW TALE"
-        let leftBarButton = UIBarButtonItem(title: "Ayarlar", style: .plain, target: self, action: #selector(settingsTapped))
-        let rightBarButton = UIBarButtonItem(title: "Hikaye Oluştur", style: .plain, target: self, action: #selector(createStoryTapped))
+        navigationItem.title = NSLocalizedString("NEW TALE", comment: "NEW TALE")
+        let leftBarButton = UIBarButtonItem(title: NSLocalizedString("SETTINGS", comment: "Settings"), style: .plain, target: self, action: #selector(settingsTapped))
+        let rightBarButton = UIBarButtonItem(title: NSLocalizedString("CREATE_STORY", comment: "Create Story"), style: .plain, target: self, action: #selector(createStoryTapped))
         
         navigationItem.leftBarButtonItem = leftBarButton
         navigationItem.rightBarButtonItem = rightBarButton
@@ -84,7 +84,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if indexPath.section == 0 {
             // "Kendi Hikayelerim" section
             let myStoriesTitles = storyViewModel.myStories.map { $0.title }
-            cell.configure(with: "Kendi Hikayelerim", items: myStoriesTitles.compactMap { $0 }, at: indexPath)
+            cell.configure(with: NSLocalizedString("STORIES_CREATED", comment: "Stories Created"), items: myStoriesTitles.compactMap { $0 }, at: indexPath)
             print("Fetched stories: \(myStoriesTitles)")
             
             // Tümünü Göster butonuna basıldığında readMyBooks çağır
@@ -100,7 +100,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             // "Hazır Kitaplar" section
             let predefinedTitles = storyViewModel.predefinedStories.map { $0.title }
-            cell.configure(with: "Hazır Kitaplar", items: predefinedTitles, at: indexPath)
+            cell.configure(with: NSLocalizedString("PREDEFINED_STORIES", comment: "Predefined Stories"), items: predefinedTitles, at: indexPath)
             
             // Tümünü Göster butonuna basıldığında readPredefinedBooks çağır
             cell.showAllButtonAction = { [weak self] _ in

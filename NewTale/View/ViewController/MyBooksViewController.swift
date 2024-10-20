@@ -31,7 +31,7 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationItem.title = "My Stories"
+        navigationItem.title = NSLocalizedString("STORIES_CREATED", comment: "STORIES_CREATED")
 
         view.addSubview(tableView)
         setupConstraints()
@@ -74,7 +74,7 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
         if let title = extractTitle(from: story) {
             cell.textLabel?.text = title
         } else {
-            cell.textLabel?.text = "Başlık bulunamadı" // Eğer başlık ayıklanamazsa
+            cell.textLabel?.text = NSLocalizedString("Title is not found", comment: "Title is not found") // Eğer başlık ayıklanamazsa
         }
         
         cell.selectionStyle = .none

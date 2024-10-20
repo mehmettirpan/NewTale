@@ -49,7 +49,7 @@ class StoryViewController: UIViewController {
     
     // Kaydet butonu
     let saveButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Kaydet", style: .plain, target: self, action: #selector(saveStory))
+        let button = UIBarButtonItem(title: NSLocalizedString("SAVE", comment: "Save"), style: .plain, target: self, action: #selector(saveStory))
         return button
     }()
     
@@ -179,7 +179,7 @@ class StoryViewController: UIViewController {
         guard let story = storyContent else { return }
         
         let utterance = AVSpeechUtterance(string: story)
-        utterance.voice = AVSpeechSynthesisVoice(language: "tr-TR")
+        utterance.voice = AVSpeechSynthesisVoice(language: NSLocalizedString("SPEECH_LANGUAGE", comment: "Speech language"))
         utterance.rate = 0.4
         
         speechSynthesizer.speak(utterance)
@@ -212,7 +212,7 @@ class StoryViewController: UIViewController {
         let (formattedText, title) = formatStoryContent(story)
         
         guard let storyTitle = title else {
-            showAlert(message: "Başlık bulunamadı, hikaye kaydedilemiyor.")
+            showAlert(message: NSLocalizedString("Title not found, story cannot be saved.", comment: "Title not found, story cannot be saved."))
             return
         }
 
@@ -224,16 +224,16 @@ class StoryViewController: UIViewController {
         
         do {
             try context.save()
-            showAlert(message: "Hikaye başarıyla kaydedildi.")
+            showAlert(message: NSLocalizedString("The story was successfully recorded.", comment: "The story was successfully recorded."))
         } catch {
-            print("Hikaye kaydedilemedi: \(error)")
-            showAlert(message: "Hikaye kaydedilemedi.")
+            print("The story was not recorded.: \(error)")
+            showAlert(message: NSLocalizedString("The story was not recorded.", comment: "The story was not recorded."))
         }
     }
     
     func showAlert(message: String) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Tamam", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
 }

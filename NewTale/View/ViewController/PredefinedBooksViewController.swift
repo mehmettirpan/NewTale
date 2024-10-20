@@ -21,7 +21,7 @@ class PredefinedBooksViewController: UIViewController, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        navigationItem.title = "Predefined Stories"
+        navigationItem.title = NSLocalizedString("PREDEFINED_STORIES", comment: "predefined stories")
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -44,9 +44,9 @@ class PredefinedBooksViewController: UIViewController, UITableViewDataSource, UI
     
     // MARK: - Show Language Selection Popup
     func showLanguageSelectionPopUp() {
-        let alertController = UIAlertController(title: "Select Language", message: "Which language would you like to read books in?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: NSLocalizedString("Select Language", comment: "Select Language"), message: NSLocalizedString("Which language would you like to read books in?", comment: "Which language would you like to read books in?"), preferredStyle: .alert)
         
-        let languages = ["Turkish", "English", "German", "French", "Russian"]
+        let languages = ["Türkçe", "English", "Deutsch", "Français", "Русский"]
         for language in languages {
             alertController.addAction(UIAlertAction(title: language, style: .default, handler: { [weak self] _ in
                 // Tell the ViewModel to load the JSON for the selected language
@@ -60,15 +60,15 @@ class PredefinedBooksViewController: UIViewController, UITableViewDataSource, UI
     func loadJSONForLanguage(language: String) {
         let fileName: String
         switch language {
-        case "Turkish":
+        case "Türkçe":
             fileName = "predefinedStories_tr"
         case "English":
             fileName = "predefinedStories_en"
-        case "German":
+        case "Deutsch":
             fileName = "predefinedStories_de"
-        case "French":
+        case "Français":
             fileName = "predefinedStories_fr"
-        case "Russian":
+        case "Русский":
             fileName = "predefinedStories_ru"
         default:
             fileName = "predefinedStories_en" // Default to English

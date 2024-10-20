@@ -6,7 +6,25 @@
   
 */
 
+"NEW TALE" = "NEUES MÄRCHEN";
 "AGE_PLACEHOLDER" = "Alter des Kindes";
-"INTEREST_PLACEHOLDER" = "Interessengebiete";
-"GENERATE_PLACEHOLDER" = "Die beabsichtigte Nachricht";
+"INTEREST_PLACEHOLDER" = "Interessen";
+"GENERATE_PLACEHOLDER" = "Zu übermittelnde Botschaft";
 "SUBMIT" = "Erstellen";
+"SHOW_ALL" = "Alle Anzeigen";
+"SETTINGS" = "Einstellungen";
+"CREATE_STORY" = "Geschichte Erstellen";
+"STORIES_CREATED" = "Erstellte Geschichten";
+"PREDEFINED_STORIES" = "Vordefinierte Geschichten";
+"SAVE" = "Speichern";
+"SPEECH_LANGUAGE" = "de-DE";
+"Title not found, story cannot be saved." = "Titel nicht gefunden, Geschichte kann nicht gespeichert werden.";
+"The story was successfully recorded." = "Die Geschichte wurde erfolgreich gespeichert.";
+"The story was not recorded." = "Die Geschichte wurde nicht gespeichert.";
+"OK" = "OK";
+"Please fill in all fields." = "Bitte alle Felder ausfüllen.";
+"ERROR" = "Fehler";
+"Select Language" = "Sprache der Geschichte Wählen";
+"Which language would you like to read books in?" = "In welcher Sprache möchten Sie Bücher lesen?";
+"Title is not found" = "Titel Nicht Gefunden";
+"Default Language" = "Deutsch";

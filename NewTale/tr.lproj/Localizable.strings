@@ -6,7 +6,26 @@
   
 */
 
+"NEW TALE" = "YENİ MASAL";
 "AGE_PLACEHOLDER" = "Çocuğun Yaşı";
 "INTEREST_PLACEHOLDER" = "İlgi Alanları";
 "GENERATE_PLACEHOLDER" = "Verilmek İstenen Mesaj";
 "SUBMIT" = "Oluştur";
+"SHOW_ALL" = "Tümünü Göster";
+"SETTINGS" = "Ayarlar";
+"CREATE_STORY" = "Hikaye Oluştur";
+"STORIES_CREATED" = "Oluşturulan Hikayeler";
+"PREDEFINED_STORIES" = "Hazır Hikayeler";
+"SAVE" = "Kaydet";
+"SPEECH_LANGUAGE" = "tr-TR";
+"Title not found, story cannot be saved." = "Başlık bulunamadı, hikaye kaydedilemiyor.";
+"The story was successfully recorded." = "Hikaye başarıyla kaydedildi.";
+"The story was not recorded." = "Hikaye kaydedilemedi.";
+"OK" = "Tamam";
+"Please fill in all fields." = "Lütfen tüm alanları doldurun.";
+"ERROR" = "Hata";
+"Select Language" = "Hikayenin Dilini Seçiniz";
+"Which language would you like to read books in?" = "Hangi dilde kitap okumak istersiniz?";
+"Title is not found" = "Başlık Bulunamadı";
+"Default Language" = "Türkçe";
+

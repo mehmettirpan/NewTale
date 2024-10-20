@@ -63,7 +63,7 @@ class CreateBookViewController: UIViewController {
         guard let ageText = ageTextField.text, let age = Int(ageText),
               let interest = interestTextField.text, !interest.isEmpty,
               let purpose = purposeTextField.text, !purpose.isEmpty else {
-            showAlert(message: "Lütfen tüm alanları doldurun.")
+            showAlert(message: NSLocalizedString("Please fill in all fields.", comment: "Please fill in all fields."))
             return
         }
 
@@ -82,8 +82,8 @@ class CreateBookViewController: UIViewController {
 
     // Yardımcı fonksiyon: Uyarı göstermek için
     func showAlert(message: String) {
-        let alert = UIAlertController(title: "Hata", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Tamam", style: .default, handler: nil))
+        let alert = UIAlertController(title: NSLocalizedString("ERROR", comment: "Error"), message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
 }

@@ -1,0 +1,42 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "erv-wa-gIk.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"For those who want to write their own fairy tale freely\"; ObjectID = \"erv-wa-gIk\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "For those who want to write their own fairy tale freely"
+          }
+        }
+      }
+    },
+    "glV-cf-ecG.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Deneme\"; ObjectID = \"glV-cf-ecG\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Deneme"
+          }
+        }
+      }
+    },
+    "yiF-3V-enM.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Ekranı\"; ObjectID = \"yiF-3V-enM\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Ekranı"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

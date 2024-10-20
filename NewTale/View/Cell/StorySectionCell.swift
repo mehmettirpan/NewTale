@@ -37,7 +37,7 @@ class StorySectionCell: UITableViewCell, UICollectionViewDataSource, UICollectio
     private func setupViews() {
         titleLabel.font = .boldSystemFont(ofSize: 18)
         
-        showAllButton.setTitle("Tümünü Göster", for: .normal)
+        showAllButton.setTitle(NSLocalizedString("SHOW_ALL", comment: "Show All"), for: .normal)
         showAllButton.addTarget(self, action: #selector(showAllTapped), for: .touchUpInside)
 
         collectionView.dataSource = self

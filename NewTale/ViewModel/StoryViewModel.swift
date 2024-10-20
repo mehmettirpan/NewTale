@@ -47,15 +47,15 @@ class StoryViewModel {
     func loadJSONForLanguage(language: String) {
         let fileName: String
         switch language {
-        case "Turkish":
+        case "Türkçe":
             fileName = "predefinedStories_tr"
         case "English":
             fileName = "predefinedStories_en"
-        case "German":
+        case "Deutsch":
             fileName = "predefinedStories_de"
-        case "French":
+        case "Français":
             fileName = "predefinedStories_fr"
-        case "Russian":
+        case "Русский":
             fileName = "predefinedStories_ru"
         default:
             fileName = "predefinedStories_en" // Default to English

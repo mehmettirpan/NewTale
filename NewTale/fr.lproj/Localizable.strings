@@ -6,7 +6,25 @@
   
 */
 
-"AGE_PLACEHOLDER" = "Âge de l'enfant";
-"INTEREST_PLACEHOLDER" = "Champs d'intérêt";
-"GENERATE_PLACEHOLDER" = "Le message prévu";
+"NEW TALE" = "NOUVEAU CONTE";
+"AGE_PLACEHOLDER" = "Âge de l'Enfant";
+"INTEREST_PLACEHOLDER" = "Centres d'Intérêt";
+"GENERATE_PLACEHOLDER" = "Message à Transmettre";
 "SUBMIT" = "Créer";
+"SHOW_ALL" = "Tout Afficher";
+"SETTINGS" = "Paramètres";
+"CREATE_STORY" = "Créer une Histoire";
+"STORIES_CREATED" = "Histoires Créées";
+"PREDEFINED_STORIES" = "Histoires Prédéfinies";
+"SAVE" = "Enregistrer";
+"SPEECH_LANGUAGE" = "fr-FR";
+"Title not found, story cannot be saved." = "Titre introuvable, l'histoire ne peut pas être enregistrée.";
+"The story was successfully recorded." = "L'histoire a été enregistrée avec succès.";
+"The story was not recorded." = "L'histoire n'a pas été enregistrée.";
+"OK" = "OK";
+"Please fill in all fields." = "Veuillez remplir tous les champs.";
+"ERROR" = "Erreur";
+"Select Language" = "Sélectionner la Langue de l'Histoire";
+"Which language would you like to read books in?" = "Dans quelle langue souhaitez-vous lire les livres ?";
+"Title is not found" = "Titre Introuvable";
+"Default Language" = "Français";

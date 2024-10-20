@@ -6,7 +6,25 @@
   
 */
 
-"AGE_PLACEHOLDER" = "Возраст ребёнка";
-"INTEREST_PLACEHOLDER" = "Области интересов";
-"GENERATE_PLACEHOLDER" = "Предназначенное сообщение";
+"NEW TALE" = "НОВАЯ СКАЗКА";
+"AGE_PLACEHOLDER" = "Возраст Ребенка";
+"INTEREST_PLACEHOLDER" = "Интересы";
+"GENERATE_PLACEHOLDER" = "Сообщение для Передачи";
 "SUBMIT" = "Создать";
+"SHOW_ALL" = "Показать Все";
+"SETTINGS" = "Настройки";
+"CREATE_STORY" = "Создать Историю";
+"STORIES_CREATED" = "Созданные Истории";
+"PREDEFINED_STORIES" = "Предустановленные Истории";
+"SAVE" = "Сохранить";
+"SPEECH_LANGUAGE" = "ru-RU";
+"Title not found, story cannot be saved." = "Заголовок не найден, историю нельзя сохранить.";
+"The story was successfully recorded." = "История успешно сохранена.";
+"The story was not recorded." = "История не была сохранена.";
+"OK" = "ОК";
+"Please fill in all fields." = "Пожалуйста, заполните все поля.";
+"ERROR" = "Ошибка";
+"Select Language" = "Выберите Язык Истории";
+"Which language would you like to read books in?" = "На каком языке вы хотите читать книги?";
+"Title is not found" = "Заголовок Не Найден";
+"Default Language" = "Русский";

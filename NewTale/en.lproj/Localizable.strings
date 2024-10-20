@@ -6,7 +6,25 @@
   
 */
 
+"NEW TALE" = "NEW TALE";
 "AGE_PLACEHOLDER" = "Child's Age";
-"INTEREST_PLACEHOLDER" = "Fields of interest";
-"GENERATE_PLACEHOLDER" = "The Intended Message";
+"INTEREST_PLACEHOLDER" = "Interests";
+"GENERATE_PLACEHOLDER" = "Message to Convey";
 "SUBMIT" = "Create";
+"SHOW_ALL" = "Show All";
+"SETTINGS" = "Settings";
+"CREATE_STORY" = "Create Story";
+"STORIES_CREATED" = "Created Stories";
+"PREDEFINED_STORIES" = "Predefined Stories";
+"SAVE" = "Save";
+"SPEECH_LANGUAGE" = "en-US";
+"Title not found, story cannot be saved." = "Title not found, story cannot be saved.";
+"The story was successfully recorded." = "The story was successfully recorded.";
+"The story was not recorded." = "The story was not recorded.";
+"OK" = "OK";
+"Please fill in all fields." = "Please fill in all fields.";
+"ERROR" = "Error";
+"Select Language" = "Select Story Language";
+"Which language would you like to read books in?" = "Which language would you like to read books in?";
+"Title is not found" = "Title Not Found";
+"Default Language" = "English";
