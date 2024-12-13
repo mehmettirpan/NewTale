@@ -118,7 +118,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: - Button Actions
     @objc func settingsTapped() {
-        // Open Settings page
+        navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
 
     @objc func createStoryTapped() {

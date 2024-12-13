@@ -14,6 +14,8 @@ struct StoryInput {
     let interest: String
     let purpose: String
     let language: String // "en", "tr", "de", "fr", "ru", etc.
+    let mainCharacter: String?
+    let storyLocation: String?
 }
 
 // Struct for decoding the JSON response

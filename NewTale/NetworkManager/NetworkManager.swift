@@ -59,7 +59,17 @@ class NetworkManager {
     private func createPrompt(input: StoryInput) -> String {
         switch input.language {
         case "tr":
-            return "\(input.age) yaşındaki \(input.interest) ile ilgilenen çocuğa yönelik bir masal ve bu masala uygun bir başlık yaz. Masalın vermek istediği mesaj: \(input.purpose)."
+            var prompt = "\(input.age) yaşındaki \(input.interest) ile ilgilenen çocuğa yönelik bir masal ve bu masala uygun bir başlık yaz. Masalın vermek istediği mesaj: \(input.purpose). Çıktı formatı şu şekilde olmalıdır; ## ile başlığı belirteceksin alt satırında konuyu Konu:... şeklinde yazmalısın ve onun altında ise masal'ı yazmalısın, başlığını ## olarak belirtmelisin"
+            
+            // Opsiyonel değerler ekleniyor
+            if let mainCharacter = input.mainCharacter {
+                prompt += "\nBaşrol: \(mainCharacter)"
+            }
+            
+            if let storyLocation = input.storyLocation {
+                prompt += "\nHikaye Nerede Geçiyor: \(storyLocation)"
+            }
+            return prompt
         case "de":
             return "Schreibe eine Geschichte für ein \(input.age)-jähriges Kind, das sich für \(input.interest) interessiert. Der Zweck der Geschichte ist \(input.purpose)."
         case "fr":

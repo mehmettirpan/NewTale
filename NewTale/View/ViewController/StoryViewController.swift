@@ -212,7 +212,7 @@ class StoryViewController: UIViewController {
         let (formattedText, title) = formatStoryContent(story)
         
         guard let storyTitle = title else {
-            showAlert(message: NSLocalizedString("Title not found, story cannot be saved.", comment: "Title not found, story cannot be saved."))
+            showAlert(on: self, title: "Error", message: NSLocalizedString("Title not found, story cannot be saved.", comment: "Title not found, story cannot be saved."))
             return
         }
 
@@ -224,16 +224,11 @@ class StoryViewController: UIViewController {
         
         do {
             try context.save()
-            showAlert(message: NSLocalizedString("The story was successfully recorded.", comment: "The story was successfully recorded."))
+            showAlert(on: self, title: "Successfull", message: NSLocalizedString("The story was successfully recorded.", comment: "The story was successfully recorded."))
         } catch {
             print("The story was not recorded.: \(error)")
-            showAlert(message: NSLocalizedString("The story was not recorded.", comment: "The story was not recorded."))
+            showAlert(on: self, title: "Error", message: NSLocalizedString("The story was not recorded.", comment: "The story was not recorded."))
         }
     }
-    
-    func showAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
+
 }

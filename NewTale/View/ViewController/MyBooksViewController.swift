@@ -67,14 +67,20 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         let story = stories[indexPath.row].content ?? ""
         
-        // Başlık çıkarma işlemi: "##" ile başlayan satırı bul ve sadece başlığı göster
+        // Başlık ve Konu ayıklama
         if let title = extractTitle(from: story) {
             cell.textLabel?.text = title
         } else {
-            cell.textLabel?.text = NSLocalizedString("Title is not found", comment: "Title is not found") // Eğer başlık ayıklanamazsa
+            cell.textLabel?.text = NSLocalizedString("Title is not found", comment: "Title is not found")
+        }
+        
+        if let topic = extractTopic(from: story) {
+            cell.detailTextLabel?.text = topic
+        } else {
+            cell.detailTextLabel?.text = NSLocalizedString("Topic is not found", comment: "Topic is not found")
         }
         
         cell.selectionStyle = .none
@@ -103,5 +109,19 @@ class MyBooksViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         return nil // Eğer "##" ile başlayan satır yoksa, nil döndür
+    }
+    
+    // "Konu: ..." ile başlayan satırı ayıkla
+    func extractTopic(from story: String) -> String? {
+        let lines = story.split(separator: "\n")
+        
+        // İlk "Konu: " ile başlayan satırı bul ve "Konu: " kısmını kaldır
+        for line in lines {
+            if line.hasPrefix("Konu:") {
+                return line.replacingOccurrences(of: "Konu:", with: "").trimmingCharacters(in: .whitespaces)
+            }
+        }
+        
+        return nil // Eğer "Konu: " ile başlayan satır yoksa, nil döndür
     }
 }
